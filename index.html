@@ -27,24 +27,24 @@ html, body {
     align-items: center;
     background-color: #fff;
     
-    /* Відступи всередині картки */
-    padding: 25px 8px 30px; 
+    /* Зменшив внутрішні відступи до мінімуму (4px з боків) */
+    padding: 25px 4px 30px; 
     
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     
-    /* ШИРИНА: 94% картка, отже по 3% відступу з кожного боку */
-    width: 94%; 
-    max-width: 500px;
+    /* ГОЛОВНЕ: Ширина 98% екрану. Це зробить картку максимально широкою */
+    width: 98%; 
+    max-width: 500px; /* На ПК не буде розтягуватись */
     
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     box-sizing: border-box;
 }
 
 /* Головний напис */
 .label-top {
-    font-size: 17px;    
+    font-size: 18px;    
     font-weight: 700;
     margin-bottom: 20px;
     text-align: center;
@@ -69,8 +69,11 @@ html, body {
     align-items: stretch; 
     justify-content: space-between;
     flex-wrap: nowrap; 
-    gap: 4px; /* Мінімальний проміжок між кнопками */
+    gap: 3px; /* Дуже маленький проміжок між кнопками */
     width: 100%;
+    /* Додатково переконуємось, що кнопки займають всю ширину */
+    padding: 0 2px;
+    box-sizing: border-box;
 }
 
 /* Текст "або" */
@@ -109,18 +112,17 @@ html, body {
 /* Кнопки (загальний стиль) */
 .button {
     font-family: 'Open Sans', sans-serif;
-    /* Трохи зменшив шрифт, щоб довгі слова точно влізли */
-    font-size: 11.5px; 
+    font-size: 12px; 
     font-weight: 600;
     
-    /* Майже нульові відступи збоку, щоб дати максимум місця тексту */
+    /* Відступи всередині кнопки */
     padding: 12px 1px; 
     
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     color: #fff;
     text-decoration: none;
     
@@ -137,11 +139,11 @@ html, body {
 
 /* Стиль для другого рядка на кнопці */
 .btn-subtitle {
-    font-size: 0.95em; /* Майже такий самий як основний */
+    font-size: 0.9em; 
     font-weight: 400;
     opacity: 0.95;
     margin-top: 2px;
-    white-space: nowrap; /* Заборона переносу слів */
+    white-space: nowrap; 
 }
 
 /* Кольори кнопок */
@@ -155,7 +157,7 @@ html, body {
 
 /* Контактний текст */
 #contact {
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 13px;
     text-align: center;
     color: #555;
@@ -173,7 +175,7 @@ html, body {
 
 .social-icons a { display: block; }
 .social-icons img {
-    width: 38px; 
+    width: 40px; 
     cursor: pointer;
     display: block; 
 }
@@ -181,7 +183,7 @@ html, body {
 /* Нижній блок */
 #new-block {
     font-size: 11px; 
-    margin-top: 20px;
+    margin-top: 25px;
     text-align: center;
     color: #666;
     display: flex;
