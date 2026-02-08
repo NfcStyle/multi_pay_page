@@ -2,24 +2,24 @@
 <html lang="uk">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>NfcStyle</title>
 <link rel="icon" href="Logo.png">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
 
+/* --- ЗАГАЛЬНІ СТИЛІ --- */
 html, body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
-    background-color: #f2f4f6;
+    /* На мобільному фон білий, на ПК - сірий */
+    background-color: #f2f4f6; 
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Тягнемо вгору */
+    align-items: flex-start;
     color: #333;
-    width: 100%;
-    overflow-x: hidden; /* Ховаємо горизонтальну прокрутку */
 }
 
 /* Контейнер (картка) */
@@ -29,79 +29,71 @@ html, body {
     align-items: center;
     background-color: #fff;
     
-    /* Мінімальні внутрішні відступи */
-    padding: 25px 8px 35px; 
+    /* Відступи всередині: зверху, з боків (мінімум), знизу */
+    padding: 35px 8px 45px;
     
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     
-    /* --- ГОЛОВНА ЗМІНА --- */
-    /* Використовуємо 96vw (96% від ширини вікна перегляду) */
-    width: 96vw !important; 
-    max-width: 500px;
+    /* Ширина для ПК */
+    width: 480px; 
+    max-width: 100%;
     
-    margin-top: 15px;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     box-sizing: border-box;
 }
 
-/* Головний напис */
+/* --- ЗАГОЛОВОК (ЗБІЛЬШЕНО) --- */
 .label-top {
-    font-size: 18px;    
-    font-weight: 700;
-    margin-bottom: 20px;
+    font-size: 22px; /* Було 18px -> стало 22px */
+    font-weight: 800; /* Дуже жирний */
+    margin-bottom: 25px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    white-space: nowrap; 
+    line-height: 1.2;
 }
 
-/* Блок банку */
 .bank-block {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;   
+    margin-bottom: 30px;   
     width: 100%;
 }
 
-/* Рядок дій (кнопки та "або") */
 .actions-row {
     display: flex;
     flex-direction: row;
     align-items: stretch; 
     justify-content: space-between;
     flex-wrap: nowrap; 
-    gap: 4px; 
+    gap: 8px; 
     width: 100%;
 }
 
-/* Текст "або" */
 .or-text {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
-    color: #888;
+    color: #999;
     flex-shrink: 0;
     align-self: center;
-    padding: 0 1px;
+    padding: 0 2px;
 }
 
-/* Логотип банку */
 .bankLogo {
-    width: 50px;
-    margin-bottom: 8px;
+    width: 60px; /* Логотипи теж трохи більше */
+    margin-bottom: 12px;
     display: block;
     object-fit: contain;
 }
+.privat-logo { width: 65px; }
 
-.privat-logo {
-    width: 55px;
-}
-
-/* Номери карток */
+/* --- НОМЕР КАРТИ (БЕЗ ЗМІН) --- */
 .nfcData {
-    font-size: 19px;
-    margin-bottom: 12px;
+    font-size: 20px; /* Залишив як було */
+    margin-bottom: 15px;
     font-weight: 700;
     word-break: break-all;
     text-align: center;
@@ -109,20 +101,21 @@ html, body {
     letter-spacing: 0.5px;
 }
 
-/* Кнопки (загальний стиль) */
+/* --- КНОПКИ (ЗБІЛЬШЕНО ТЕКСТ) --- */
 .button {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px; 
-    font-weight: 600;
     
-    /* Максимально вузькі бічні відступи */
-    padding: 12px 1px; 
+    /* Основний текст кнопки */
+    font-size: 15px; /* Було 12px -> стало 15px */
+    font-weight: 700;
+    
+    /* Висота кнопки */
+    padding: 14px 2px; 
     
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     color: #fff;
     text-decoration: none;
     
@@ -131,115 +124,90 @@ html, body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    line-height: 1.15;
+    line-height: 1.2;
     
-    /* Кнопка розтягується на всю доступну ширину */
-    flex: 1 1 0px; 
+    flex: 1; 
     width: 100%;
-    min-width: 0;
+    transition: transform 0.1s;
 }
 
-/* Стиль для другого рядка на кнопці */
+.button:active {
+    transform: scale(0.97);
+}
+
+/* Підпис на кнопці */
 .btn-subtitle {
-    font-size: 0.95em; 
+    font-size: 11px; /* Було 9px -> стало 11px */
     font-weight: 400;
     opacity: 0.95;
-    margin-top: 2px;
+    margin-top: 3px;
     white-space: nowrap; 
 }
 
-/* Кольори кнопок */
+/* Кольори */
 .privat { background-color: #00A859; }
 .mono   { background-color: #000000; }
 .pumb   { background-color: #D53B43; }
 
-.button:active {
-    transform: scale(0.98);
-}
-
-/* Контактний текст */
 #contact {
     margin-top: 15px;
-    font-size: 13px;
+    font-size: 14px;
     text-align: center;
     color: #555;
 }
 
-/* Іконки соцмереж */
 .social-icons {
-    margin-top: 15px;
+    margin-top: 18px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap; 
-    gap: 15px; 
+    gap: 20px; 
 }
-
-.social-icons a { display: block; }
 .social-icons img {
-    width: 42px; /* Збільшив іконки для зручності */
-    cursor: pointer;
+    width: 44px; 
     display: block; 
 }
 
-/* Нижній блок */
 #new-block {
-    font-size: 11px; 
-    margin-top: 25px;
+    font-size: 12px; 
+    margin-top: 35px;
     text-align: center;
     color: #666;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    line-height: 1.3;
+    line-height: 1.5;
 }
+#new-block b { font-weight: 700; font-size: 14px; color: #333; display: block; margin-bottom: 5px; }
+#new-block-logo { width: 65px; display: block; margin: 10px auto 0; }
 
-#new-block b { font-weight: 700; font-size: 13px; color: #333; }
-
-#new-block-logo {
-    width: 50px;
-    display: block;
-    margin-top: 5px;
-}
-
-/* Спливаюче повідомлення */
 #customAlert {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    backdrop-filter: blur(3px);
+    position: fixed; top: 0; left: 0; width:100%; height:100%;
+    background: rgba(0,0,0,0.5); display: none;
+    justify-content: center; align-items: center; z-index: 2000;
+    backdrop-filter: blur(4px);
 }
 #alertBox {
-    background: #fff;
-    padding: 25px 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    text-align: center;
-    width: 80%;
-    max-width: 300px;
+    background: #fff; padding: 30px; border-radius: 16px;
+    text-align: center; width: 85%; max-width: 320px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
-#alertMessage {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-}
+#alertMessage { font-size: 19px; font-weight: 700; color: #333; }
 
-/* МЕДІА ЗАПИТ ДЛЯ ТЕЛЕФОНІВ (примусове розширення) */
-@media (max-width: 600px) {
+/* --- Мобільна адаптація (Агресивна) --- */
+@media (max-width: 768px) {
+    body {
+        background-color: #ffffff; /* Білий фон на телефоні */
+    }
     #content {
-        /* Примусово ставимо 96% від ширини екрану */
-        width: 96vw !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
+        /* Розтягуємо майже на весь екран */
+        width: 96vw !important; 
+        max-width: none !important;
+        margin: 0 auto !important;
+        box-shadow: none; /* Прибираємо тіні, щоб виглядало пласким */
+        padding-top: 20px;
+    }
+    
+    /* Якщо екран дуже вузький (iPhone SE тощо), трохи зменшимо, щоб влізло */
+    @media (max-width: 360px) {
+        .button { font-size: 13px; }
+        .or-text { font-size: 12px; }
     }
 }
 </style>
@@ -252,7 +220,6 @@ html, body {
     <div class="bank-block">
         <img class="bankLogo privat-logo" src="Privat.png" alt="PrivatBank Logo">
         <div class="nfcData" id="privatData">4149609074261241</div>
-        
         <div class="actions-row">
             <button class="button privat" onclick="copyCard('4149609074261241')">
                 Копіювати<br><span class="btn-subtitle">номер карти</span>
@@ -267,7 +234,6 @@ html, body {
     <div class="bank-block">
         <img class="bankLogo" src="Pumb.jpg" alt="PUMB Logo">
         <div class="nfcData" id="pumbData">5355280217236304</div>
-        
         <div class="actions-row">
             <button class="button pumb" onclick="copyCard('5355280217236304')">
                 Копіювати<br><span class="btn-subtitle">номер карти</span>
@@ -282,7 +248,6 @@ html, body {
     <div class="bank-block">
         <img class="bankLogo" src="Mono.png" alt="Monobank Logo">
         <div class="nfcData" id="monoData">4441111053214973</div>
-        
         <div class="actions-row">
             <button class="button mono" onclick="copyCard('4441111053214973')">
                 Копіювати<br><span class="btn-subtitle">номер карти</span>
@@ -332,7 +297,6 @@ function copyCard(number) {
         document.body.removeChild(el);
     }
 }
-
 function showAlert(message) {
     const overlay = document.getElementById('customAlert');
     document.getElementById('alertMessage').innerText = message;
