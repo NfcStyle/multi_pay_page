@@ -16,8 +16,10 @@ html, body {
     background-color: #f2f4f6;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start; /* Тягнемо вгору */
     color: #333;
+    width: 100%;
+    overflow-x: hidden; /* Ховаємо горизонтальну прокрутку */
 }
 
 /* Контейнер (картка) */
@@ -27,18 +29,19 @@ html, body {
     align-items: center;
     background-color: #fff;
     
-    /* Зменшив внутрішні відступи до мінімуму (4px з боків) */
-    padding: 25px 4px 30px; 
+    /* Мінімальні внутрішні відступи */
+    padding: 25px 8px 35px; 
     
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     
-    /* ГОЛОВНЕ: Ширина 98% екрану. Це зробить картку максимально широкою */
-    width: 98%; 
-    max-width: 500px; /* На ПК не буде розтягуватись */
+    /* --- ГОЛОВНА ЗМІНА --- */
+    /* Використовуємо 96vw (96% від ширини вікна перегляду) */
+    width: 96vw !important; 
+    max-width: 500px;
     
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
     box-sizing: border-box;
 }
 
@@ -69,11 +72,8 @@ html, body {
     align-items: stretch; 
     justify-content: space-between;
     flex-wrap: nowrap; 
-    gap: 3px; /* Дуже маленький проміжок між кнопками */
+    gap: 4px; 
     width: 100%;
-    /* Додатково переконуємось, що кнопки займають всю ширину */
-    padding: 0 2px;
-    box-sizing: border-box;
 }
 
 /* Текст "або" */
@@ -115,14 +115,14 @@ html, body {
     font-size: 12px; 
     font-weight: 600;
     
-    /* Відступи всередині кнопки */
+    /* Максимально вузькі бічні відступи */
     padding: 12px 1px; 
     
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     color: #fff;
     text-decoration: none;
     
@@ -133,13 +133,15 @@ html, body {
     text-align: center;
     line-height: 1.15;
     
+    /* Кнопка розтягується на всю доступну ширину */
     flex: 1 1 0px; 
+    width: 100%;
     min-width: 0;
 }
 
 /* Стиль для другого рядка на кнопці */
 .btn-subtitle {
-    font-size: 0.9em; 
+    font-size: 0.95em; 
     font-weight: 400;
     opacity: 0.95;
     margin-top: 2px;
@@ -165,7 +167,7 @@ html, body {
 
 /* Іконки соцмереж */
 .social-icons {
-    margin-top: 12px;
+    margin-top: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -175,7 +177,7 @@ html, body {
 
 .social-icons a { display: block; }
 .social-icons img {
-    width: 40px; 
+    width: 42px; /* Збільшив іконки для зручності */
     cursor: pointer;
     display: block; 
 }
@@ -229,6 +231,16 @@ html, body {
     font-size: 18px;
     font-weight: 600;
     color: #333;
+}
+
+/* МЕДІА ЗАПИТ ДЛЯ ТЕЛЕФОНІВ (примусове розширення) */
+@media (max-width: 600px) {
+    #content {
+        /* Примусово ставимо 96% від ширини екрану */
+        width: 96vw !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
 }
 </style>
 </head>
