@@ -13,7 +13,7 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
-    background-color: #f2f4f6; /* Сірий фон залишається */
+    background-color: #f2f4f6;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -27,14 +27,14 @@ html, body {
     align-items: center;
     background-color: #fff;
     
-    /* Зменшено внутрішні відступи, щоб було більше місця для кнопок */
-    padding: 25px 10px 30px; 
+    /* Відступи всередині картки */
+    padding: 25px 8px 30px; 
     
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     
-    /* ГОЛОВНА ЗМІНА: ширина 98% робить сірі поля мінімальними */
-    width: 98%; 
+    /* ШИРИНА: 94% картка, отже по 3% відступу з кожного боку */
+    width: 94%; 
     max-width: 500px;
     
     margin-top: 15px;
@@ -109,10 +109,13 @@ html, body {
 /* Кнопки (загальний стиль) */
 .button {
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px; /* Компактний шрифт */
+    /* Трохи зменшив шрифт, щоб довгі слова точно влізли */
+    font-size: 11.5px; 
     font-weight: 600;
-    /* Мінімальні відступи збоку (2px), щоб вліз довгий текст */
-    padding: 12px 2px; 
+    
+    /* Майже нульові відступи збоку, щоб дати максимум місця тексту */
+    padding: 12px 1px; 
+    
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -134,7 +137,7 @@ html, body {
 
 /* Стиль для другого рядка на кнопці */
 .btn-subtitle {
-    font-size: 0.9em; 
+    font-size: 0.95em; /* Майже такий самий як основний */
     font-weight: 400;
     opacity: 0.95;
     margin-top: 2px;
@@ -224,14 +227,6 @@ html, body {
     font-size: 18px;
     font-weight: 600;
     color: #333;
-}
-
-/* --- Мобільні налаштування --- */
-@media (max-width: 450px) {
-    /* Тут нічого критичного не міняємо, бо основні стилі вже адаптивні (98% width) */
-    .button {
-        font-size: 11px; /* Якщо екран дуже вузький, шрифт трохи зменшиться */
-    }
 }
 </style>
 </head>
