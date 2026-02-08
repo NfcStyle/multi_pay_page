@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <title>NfcStyle</title>
 <link rel="icon" href="Logo.png">
 <style>
@@ -11,11 +11,13 @@
 html, body {
     min-height: 100vh;
     margin: 0;
+    padding: 0;
     font-family: 'Open Sans', sans-serif;
+    /* За замовчуванням сірий (для ПК), але на мобільному змінимо на білий */
     background-color: #f2f4f6; 
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Вирівнювання по верху */
+    align-items: flex-start;
     color: #333;
 }
 
@@ -28,11 +30,8 @@ html, body {
     padding: 30px 20px 25px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    
-    /* АДАПТИВНІСТЬ: */
-    width: 96%; /* За замовчуванням майже на всю ширину */
-    max-width: 500px; /* Але не ширше 500px на ПК */
-    
+    width: 96%;
+    max-width: 500px;
     margin-top: 20px;
     margin-bottom: 20px;
     box-sizing: border-box;
@@ -40,12 +39,13 @@ html, body {
 
 /* Головний напис */
 .label-top {
-    font-size: 18px; /* Трохи збільшив */      
+    font-size: 18px;    
     font-weight: 700;
     margin-bottom: 20px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    white-space: nowrap; /* Забороняє перенос заголовка на 2 рядки */
 }
 
 /* Блок банку */
@@ -53,7 +53,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 25px;   
+    margin-bottom: 20px;   
     width: 100%;
 }
 
@@ -64,7 +64,7 @@ html, body {
     align-items: stretch; 
     justify-content: space-between;
     flex-wrap: nowrap; 
-    gap: 8px; /* Оптимальний відступ */
+    gap: 6px; 
     width: 100%;
 }
 
@@ -80,7 +80,7 @@ html, body {
 
 /* Логотип банку */
 .bankLogo {
-    width: 50px; /* Трохи збільшив логотипи */
+    width: 50px;
     margin-bottom: 8px;
     display: block;
     object-fit: contain;
@@ -92,9 +92,9 @@ html, body {
 
 /* Номери карток */
 .nfcData {
-    font-size: 20px; /* Збільшив шрифт номерів */
-    margin-bottom: 15px;
-    font-weight: 700; /* Жирніший шрифт */
+    font-size: 20px;
+    margin-bottom: 12px;
+    font-weight: 700;
     word-break: break-all;
     text-align: center;
     color: #222;
@@ -104,9 +104,9 @@ html, body {
 /* Кнопки (загальний стиль) */
 .button {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px; /* ЗБІЛЬШЕНО для читабельності */
+    font-size: 13px; /* Оптимальний розмір, щоб текст вліз */
     font-weight: 600;
-    padding: 14px 5px; /* Більше простору для пальця */
+    padding: 12px 4px;
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -122,7 +122,7 @@ html, body {
     text-align: center;
     line-height: 1.2;
     
-    flex: 1 1 0px; /* Рівна ширина кнопок */
+    flex: 1 1 0px; 
     min-width: 0;
 }
 
@@ -131,7 +131,7 @@ html, body {
     font-size: 0.85em; 
     font-weight: 400;
     opacity: 0.95;
-    margin-top: 3px;
+    margin-top: 2px;
     white-space: nowrap;
 }
 
@@ -141,7 +141,7 @@ html, body {
 .pumb   { background-color: #D53B43; }
 
 .button:active {
-    transform: scale(0.98); /* Ефект натискання */
+    transform: scale(0.98);
 }
 
 /* Контактний текст */
@@ -159,23 +159,19 @@ html, body {
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap; 
-    gap: 15px; /* Більший проміжок для зручності */
+    gap: 15px; 
 }
 
-.social-icons a {
-    display: block; 
-}
-
+.social-icons a { display: block; }
 .social-icons img {
-    width: 40px; /* Збільшені іконки */
+    width: 40px; 
     cursor: pointer;
-    transition: transform 0.2s ease;
     display: block; 
 }
 
 /* Нижній блок */
 #new-block {
-    font-size: 12px;
+    font-size: 11px; /* Трохи зменшив шрифт слогана */
     margin-top: 25px;
     text-align: center;
     color: #666;
@@ -184,7 +180,7 @@ html, body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    line-height: 1.4;
+    line-height: 1.3;
 }
 
 #new-block b { font-weight: 700; font-size: 13px; color: #333; }
@@ -224,45 +220,53 @@ html, body {
     color: #333;
 }
 
-/* --- МОБІЛЬНА АДАПТАЦІЯ --- */
-/* Це правило спрацює для всіх телефонів (ширина до 600px) */
+/* --- МОБІЛЬНА АДАПТАЦІЯ (Головні виправлення) --- */
 @media (max-width: 600px) {
+    /* Робимо фон білим, щоб прибрати "сірі рамки" */
     body {
-        background-color: #fff; /* На мобільному фон можна зробити білим, щоб зливався */
+        background-color: #fff; 
     }
 
     #content {
-        width: 100%; /* На весь екран */
-        max-width: none; /* Прибираємо обмеження */
-        border-radius: 0; /* Прибираємо заокруглення для ефекту "додатку" */
-        box-shadow: none; /* Прибираємо тінь, бо вона не потрібна на білому фоні */
-        padding: 20px 15px 30px; /* Оптимальні відступи */
-        margin: 0; /* Прибираємо зовнішні відступи */
-        min-height: 100vh; /* Розтягуємо на всю висоту */
+        width: 100%; 
+        max-width: none; 
+        border-radius: 0; 
+        box-shadow: none; 
+        /* Зменшив бічні відступи до 10px, щоб текст влазив по ширині */
+        padding: 20px 10px 40px; 
+        margin: 0; 
+        min-height: 100vh;
     }
 
+    /* Заголовок трохи менше, щоб точно був в 1 рядок */
     .label-top { 
-        font-size: 18px; 
-        margin-top: 10px;
+        font-size: 16px; 
+        margin-top: 5px;
     }
     
+    /* Номер карти трохи менше, щоб не розпирав екран */
     .nfcData { 
-        font-size: 21px; /* Ще більші цифри */
+        font-size: 19px; 
     }
     
     .button { 
-        font-size: 14px; /* Читабельний шрифт */
-        padding: 16px 8px; /* Висока кнопка для пальця */
+        font-size: 12px; /* Компактний шрифт для кнопки */
+        padding: 14px 4px; 
     }
     
     .or-text { 
-        font-size: 12px; 
-        padding: 0 4px; 
+        font-size: 11px; 
+        padding: 0 2px; 
     }
 
-    .social-icons img {
-        width: 42px; /* Великі іконки */
+    /* Слоган внизу - менший шрифт, щоб помістився в 2 рядки */
+    #new-block {
+        font-size: 10px;
     }
+    #new-block b {
+        font-size: 12px;
+    }
+    
     .social-icons {
         gap: 20px; 
     }
