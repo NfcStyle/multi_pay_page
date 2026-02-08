@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NfcStyle</title>
+<link rel="icon" href="Logo.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;700&display=swap');
+
+html, body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f2f4f6; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: #333;
+}
+
+/* Контейнер (картка) */
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 30px 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 94%;
+    max-width: 500px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
+
+/* Головний напис */
+.label-top {
+    font-size: 16px;       
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Блок банку */
+.bank-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;   
+    width: 100%;
+}
+
+/* Рядок дій (кнопки та "або") */
+.actions-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; 
+    justify-content: space-between;
+    flex-wrap: nowrap; 
+    gap: 10px;
+    width: 100%;
+}
+
+/* Текст "або" */
+.or-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+/* Логотип банку */
+.bankLogo {
+    width: 45px;
+    margin-bottom: 10px;
+    display: block;
+    object-fit: contain;
+}
+
+.privat-logo {
+    width: 50px;
+}
+
+/* Номери карток */
+.nfcData {
+    font-size: 18px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    word-break: break-all;
+    text-align: center;
+    color: #222;
+}
+
+/* Кнопки (загальний стиль) */
+.button {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 12px; 
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    color: #fff;
+    text-decoration: none;
+    
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 1.25;
+    
+    flex: 1 1 0px;
+    min-width: 0;
+}
+
+/* Стиль для другого рядка на кнопці */
+.btn-subtitle {
+    font-size: 0.8em;
+    font-weight: 400;
+    opacity: 0.95;
+    margin-top: 2px;
+    white-space: nowrap;
+}
+
+/* Кольори кнопок */
+.privat { background-color: #00A859; }
+.mono   { background-color: #000000; }
+.pumb   { background-color: #D53B43; }
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Контактний текст */
+#contact {
+    margin-top: 10px;
+    font-size: 13px;
+    text-align: center;
+    color: #555;
+}
+
+/* Іконки соцмереж - ВИПРАВЛЕНО */
+.social-icons {
+    margin-top: 14px;
+    /* Використовуємо Flexbox для гарантованого рядка */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap; /* Заборона переносу */
+    gap: 12px; /* Відступ між іконками */
+}
+
+.social-icons a {
+    /* margin більше не потрібен тут */
+    display: block; 
+}
+
+.social-icons img {
+    width: 36px; /* Базовий розмір для ПК */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    display: block; /* Прибирає зайві відступи під картинкою */
+}
+.social-icons img:hover { transform: scale(1.15); }
+
+/* Нижній блок */
+#new-block {
+    font-size: 11px;
+    margin-top: 20px;
+    text-align: center;
+    color: #666;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    line-height: 1.4;
+}
+
+#new-block b { font-weight: 700; font-size: 12px; color: #333; }
+
+#new-block-logo {
+    width: 45px;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Спливаюче повідомлення */
+#customAlert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(2px);
+}
+#alertBox {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    text-align: center;
+}
+#alertMessage {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Мобільна адаптивність */
+@media (max-width: 420px) {
+    #content {
+        padding: 25px 10px 20px;
+        width: 96%;
+    }
+
+    .label-top { font-size: 15px; }
+    .nfcData { font-size: 17px; }
+    
+    .button { 
+        font-size: 11px;
+        padding: 10px 6px; 
+    }
+    
+    .or-text { 
+        font-size: 11px; 
+        margin: 0 2px; 
+    }
+
+    /* Адаптація соцмереж для мобільних */
+    .social-icons img {
+        width: 32px; /* Трохи менші іконки */
+    }
+    .social-icons {
+        gap: 8px; /* Менший відступ між ними */
+    }
+}
+</style>
+</head>
+<body>
+<div id="content">
+
+    <div class="label-top">Обери спосіб оплати</div>
+
+    <div class="bank-block">
+        <img class="bankLogo privat-logo" src="Privat.png" alt="PrivatBank Logo">
+        <div class="nfcData" id="privatData">4149609074261241</div>
+        
+        <div class="actions-row">
+            <button class="button privat" onclick="copyCard('4149609074261241')">
+                Копіювати<br><span class="btn-subtitle">номер карти</span>
+            </button>
+            <span class="or-text">або</span>
+            <a href="https://www.privat24.ua/send/i76vz" target="_blank" class="button privat">
+                Оплатити<br><span class="btn-subtitle">за посиланням</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="bank-block">
+        <img class="bankLogo" src="Pumb.jpg" alt="PUMB Logo">
+        <div class="nfcData" id="pumbData">5355280217236304</div>
+        
+        <div class="actions-row">
+            <button class="button pumb" onclick="copyCard('5355280217236304')">
+                Копіювати<br><span class="btn-subtitle">номер карти</span>
+            </button>
+            <span class="or-text">або</span>
+            <a href="https://mobile-app.pumb.ua/gCzu" target="_blank" class="button pumb">
+                Оплатити<br><span class="btn-subtitle">за посиланням</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="bank-block">
+        <img class="bankLogo" src="Mono.png" alt="Monobank Logo">
+        <div class="nfcData" id="monoData">4441111053214973</div>
+        
+        <div class="actions-row">
+            <button class="button mono" onclick="copyCard('4441111053214973')">
+                Копіювати<br><span class="btn-subtitle">номер карти</span>
+            </button>
+            <span class="or-text">або</span>
+            <a href="https://send.monobank.ua/97zQ2F1QHk" target="_blank" class="button mono">
+                Оплатити<br><span class="btn-subtitle">за посиланням</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="contact">Хочеш таку мітку? Напиши нам:</div>
+    <div class="social-icons">
+        <a href="https://t.me/NfcStyleAdmin" target="_blank"><img src="telegram.png" alt="Telegram"></a>
+        <a href="viber://add?number=380973779192" target="_blank"><img src="viber.png" alt="Viber"></a>
+        <a href="https://www.instagram.com/nfcstylekr/" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+        <a href="https://wa.me/380973779192" target="_blank"><img src="whatsapp.png" alt="WhatsApp"></a>
+    </div>
+
+    <div id="new-block">
+        <b>NfcStyleKR</b>
+        <div>NfcStyleKR допоможе зробити Ваш бізнес<br>технологічно сучасним</div>
+        <img id="new-block-logo" src="Logo.png" alt="NfcStyleKR Logo">
+    </div>
+
+</div>
+
+<div id="customAlert">
+    <div id="alertBox">
+        <div id="alertMessage">Номер картки скопійовано</div>
+    </div>
+</div>
+
+<script>
+function copyCard(number) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(number)
+            .then(() => showAlert('Номер картки скопійовано'))
+            .catch(() => showAlert('Не вдалося скопіювати'));
+    } else {
+        const el = document.createElement('textarea');
+        el.value = number;
+        document.body.appendChild(el);
+        el.select();
+        try { document.execCommand('copy'); showAlert('Номер картки скопійовано'); }
+        catch { showAlert('Не вдалося скопіювати'); }
+        document.body.removeChild(el);
+    }
+}
+
+function showAlert(message) {
+    const overlay = document.getElementById('customAlert');
+    document.getElementById('alertMessage').innerText = message;
+    overlay.style.display = 'flex';
+    setTimeout(() => overlay.style.display = 'none', 1600);
+}
+</script>
+</body>
+</html>
