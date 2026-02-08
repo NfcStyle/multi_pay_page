@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <title>NfcStyle</title>
 <link rel="icon" href="Logo.png">
 <style>
@@ -15,7 +15,7 @@ html, body {
     background-color: #f2f4f6; 
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start; /* Вирівнювання по верху */
     color: #333;
 }
 
@@ -27,19 +27,22 @@ html, body {
     background-color: #fff;
     padding: 30px 20px 25px;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    width: 94%;
-    max-width: 500px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    
+    /* АДАПТИВНІСТЬ: */
+    width: 96%; /* За замовчуванням майже на всю ширину */
+    max-width: 500px; /* Але не ширше 500px на ПК */
+    
+    margin-top: 20px;
+    margin-bottom: 20px;
     box-sizing: border-box;
 }
 
 /* Головний напис */
 .label-top {
-    font-size: 16px;       
+    font-size: 18px; /* Трохи збільшив */      
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -50,7 +53,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 24px;   
+    margin-bottom: 25px;   
     width: 100%;
 }
 
@@ -61,47 +64,49 @@ html, body {
     align-items: stretch; 
     justify-content: space-between;
     flex-wrap: nowrap; 
-    gap: 10px;
+    gap: 8px; /* Оптимальний відступ */
     width: 100%;
 }
 
 /* Текст "або" */
 .or-text {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     color: #888;
     flex-shrink: 0;
     align-self: center;
+    padding: 0 2px;
 }
 
 /* Логотип банку */
 .bankLogo {
-    width: 45px;
-    margin-bottom: 10px;
+    width: 50px; /* Трохи збільшив логотипи */
+    margin-bottom: 8px;
     display: block;
     object-fit: contain;
 }
 
 .privat-logo {
-    width: 50px;
+    width: 55px;
 }
 
 /* Номери карток */
 .nfcData {
-    font-size: 18px;
-    margin-bottom: 12px;
-    font-weight: 600;
+    font-size: 20px; /* Збільшив шрифт номерів */
+    margin-bottom: 15px;
+    font-weight: 700; /* Жирніший шрифт */
     word-break: break-all;
     text-align: center;
     color: #222;
+    letter-spacing: 0.5px;
 }
 
 /* Кнопки (загальний стиль) */
 .button {
     font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
+    font-size: 14px; /* ЗБІЛЬШЕНО для читабельності */
     font-weight: 600;
-    padding: 12px 12px; 
+    padding: 14px 5px; /* Більше простору для пальця */
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -115,18 +120,18 @@ html, body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    line-height: 1.25;
+    line-height: 1.2;
     
-    flex: 1 1 0px;
+    flex: 1 1 0px; /* Рівна ширина кнопок */
     min-width: 0;
 }
 
 /* Стиль для другого рядка на кнопці */
 .btn-subtitle {
-    font-size: 0.8em;
+    font-size: 0.85em; 
     font-weight: 400;
     opacity: 0.95;
-    margin-top: 2px;
+    margin-top: 3px;
     white-space: nowrap;
 }
 
@@ -135,61 +140,57 @@ html, body {
 .mono   { background-color: #000000; }
 .pumb   { background-color: #D53B43; }
 
-.button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+.button:active {
+    transform: scale(0.98); /* Ефект натискання */
 }
 
 /* Контактний текст */
 #contact {
-    margin-top: 10px;
-    font-size: 13px;
+    margin-top: 15px;
+    font-size: 14px;
     text-align: center;
     color: #555;
 }
 
-/* Іконки соцмереж - ВИПРАВЛЕНО */
+/* Іконки соцмереж */
 .social-icons {
-    margin-top: 14px;
-    /* Використовуємо Flexbox для гарантованого рядка */
+    margin-top: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: nowrap; /* Заборона переносу */
-    gap: 12px; /* Відступ між іконками */
+    flex-wrap: nowrap; 
+    gap: 15px; /* Більший проміжок для зручності */
 }
 
 .social-icons a {
-    /* margin більше не потрібен тут */
     display: block; 
 }
 
 .social-icons img {
-    width: 36px; /* Базовий розмір для ПК */
+    width: 40px; /* Збільшені іконки */
     cursor: pointer;
     transition: transform 0.2s ease;
-    display: block; /* Прибирає зайві відступи під картинкою */
+    display: block; 
 }
-.social-icons img:hover { transform: scale(1.15); }
 
 /* Нижній блок */
 #new-block {
-    font-size: 11px;
-    margin-top: 20px;
+    font-size: 12px;
+    margin-top: 25px;
     text-align: center;
     color: #666;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
     line-height: 1.4;
 }
 
-#new-block b { font-weight: 700; font-size: 12px; color: #333; }
+#new-block b { font-weight: 700; font-size: 13px; color: #333; }
 
 #new-block-logo {
-    width: 45px;
+    width: 50px;
     display: block;
     margin-top: 5px;
 }
@@ -206,47 +207,64 @@ html, body {
     justify-content: center;
     align-items: center;
     z-index: 2000;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
 }
 #alertBox {
     background: #fff;
-    padding: 20px 30px;
-    border-radius: 12px;
+    padding: 25px 30px;
+    border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     text-align: center;
+    width: 80%;
+    max-width: 300px;
 }
 #alertMessage {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: #333;
 }
 
-/* Мобільна адаптивність */
-@media (max-width: 420px) {
-    #content {
-        padding: 25px 10px 20px;
-        width: 96%;
+/* --- МОБІЛЬНА АДАПТАЦІЯ --- */
+/* Це правило спрацює для всіх телефонів (ширина до 600px) */
+@media (max-width: 600px) {
+    body {
+        background-color: #fff; /* На мобільному фон можна зробити білим, щоб зливався */
     }
 
-    .label-top { font-size: 15px; }
-    .nfcData { font-size: 17px; }
+    #content {
+        width: 100%; /* На весь екран */
+        max-width: none; /* Прибираємо обмеження */
+        border-radius: 0; /* Прибираємо заокруглення для ефекту "додатку" */
+        box-shadow: none; /* Прибираємо тінь, бо вона не потрібна на білому фоні */
+        padding: 20px 15px 30px; /* Оптимальні відступи */
+        margin: 0; /* Прибираємо зовнішні відступи */
+        min-height: 100vh; /* Розтягуємо на всю висоту */
+    }
+
+    .label-top { 
+        font-size: 18px; 
+        margin-top: 10px;
+    }
+    
+    .nfcData { 
+        font-size: 21px; /* Ще більші цифри */
+    }
     
     .button { 
-        font-size: 11px;
-        padding: 10px 6px; 
+        font-size: 14px; /* Читабельний шрифт */
+        padding: 16px 8px; /* Висока кнопка для пальця */
     }
     
     .or-text { 
-        font-size: 11px; 
-        margin: 0 2px; 
+        font-size: 12px; 
+        padding: 0 4px; 
     }
 
-    /* Адаптація соцмереж для мобільних */
     .social-icons img {
-        width: 32px; /* Трохи менші іконки */
+        width: 42px; /* Великі іконки */
     }
     .social-icons {
-        gap: 8px; /* Менший відступ між ними */
+        gap: 20px; 
     }
 }
 </style>
